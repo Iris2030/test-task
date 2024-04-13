@@ -1,0 +1,15 @@
+.Title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.Error {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #ffbaba;
+  color: #d8000c;
+  border-radius: 5px;
+  border: 1px solid #d8000c;
+  text-align: center;
+}
