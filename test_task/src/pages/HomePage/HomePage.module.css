@@ -1,0 +1,5 @@
+.about_container{
+display: flex;
+justify-content: center;
+/* width: 1600px; */
+}

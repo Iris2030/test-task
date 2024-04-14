@@ -36,7 +36,7 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 1600px;
-  background-image: linear-gradient(to right, rgba(47, 48, 58, 0.291), rgba(47, 48, 58, 0.261)),
+  background-image: linear-gradient(to right, rgba(47, 48, 58, 0.492), rgba(47, 48, 58, 0.494)),
     url(../../assets/img/young-friends-taking-front-van.jpg);
 
     background-size: cover;
@@ -85,7 +85,7 @@
 }
 
 .link:hover {
-  color:  #f3db9e;
+  color: #f3db9e;
 }
 
 .navItem .activeLink {
