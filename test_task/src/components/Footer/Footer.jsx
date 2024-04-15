@@ -29,19 +29,19 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className={style.footer_icons_wrapper}>
-        <div className={style.footer_icons}>
-          <a className={style.footer_icon} href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-        		<img width="24" height="24" alt="Facebook" src="https://freeway-camper.com/assets/media/images/icons-and-logos/Facebook.svg"/>
+      <div className={style.footer_links_wrapper}>
+        <div className={style.footer_links}>
+          <a className={style.footer_link} href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+        		<img className={style.footer_icon} width="24" height="24" alt="Facebook" src="https://freeway-camper.com/assets/media/images/icons-and-logos/Facebook.svg"/>
         	</a>
-          <a className={style.footer_icon} href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-			  		<img width="24" height="24" alt="Instagram" src="https://freeway-camper.com/assets/media/images/icons-and-logos/Instagram.svg"/>
+          <a className={style.footer_link} href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+			  		<img className={style.footer_icon} width="24" height="24" alt="Instagram" src="https://freeway-camper.com/assets/media/images/icons-and-logos/Instagram.svg"/>
 			  	</a>
-          <a  className={style.footer_icon} href="https://www.youtube.com/" target="_blank" rel="noreferrer">
-			  		<img width="24" height="24" alt="Youtube" src="https://freeway-camper.com/assets/media/images/icons-and-logos/Youtube.svg"/>
+          <a  className={style.footer_link} href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+			  		<img className={style.footer_icon} width="24" height="24" alt="Youtube" src="https://freeway-camper.com/assets/media/images/icons-and-logos/Youtube.svg"/>
 			  	</a>
-			  		<a className={style.footer_icon} href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
-			  			<img  width="24" height="24" alt="LinkedIn" src="https://freeway-camper.com/assets/media/images/icons-and-logos/LinkedIn_Logo.svg"/>
+			  		<a className={style.footer_link} href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+			  			<img className={style.footer_icon} width="24" height="24" alt="LinkedIn" src="https://freeway-camper.com/assets/media/images/icons-and-logos/LinkedIn_Logo.svg"/>
 			  	</a>
         </div>
       </div>
