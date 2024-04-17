@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../../components/Loader/Loader';
 import style from './catalog.module.css';
-import Card from '../../components/Card/Card';
+import { CardInfo } from 'components/CardInfo/CardInfo';
+import NavList from 'components/NavList/NavList';
+import { Filter } from 'components/Filter/Filter';
 
 const Catalog = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   return (
     <>
       {loading && <Loader size={80} color="#00BFFF" />}
       {error && (
         <div className={style.Error}>An error occurred: {error.message}</div>
       )}
-      <Card/>
+      <NavList/> 
+      <div className={style.catalog_wrapper}>
+      <Filter/>
+      <CardInfo/>
+      </div>
     </>
   );
 };

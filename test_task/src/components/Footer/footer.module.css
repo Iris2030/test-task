@@ -13,6 +13,7 @@
 }
 
 .footer_list_wrapper{
+  padding-left: 40px;
   margin-right: 100px;
 }
 
@@ -40,8 +41,8 @@
   color: #fff;
   font-size: 18px;
   font-weight: 500;
-  padding-left: 40px;
   padding-top: 40px;
+  margin-bottom: 20px;
 }
 
 .footer_links_wrapper{
@@ -52,7 +53,7 @@
 
 .footer_links{
   padding: 30px 0 10px;
-  border-top: 1px solid  #025298;
+  border-top: 1px solid  #c8802e7e;
 }
 
 .footer_link:not(:last-child){

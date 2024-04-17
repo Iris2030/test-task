@@ -1,0 +1,110 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+}
+
+.modal {
+  width: 982px;
+  max-height: 90vh;
+  overflow: auto;
+  padding: 40px;
+  border-radius: 20px;
+  background: #fff;
+  scrollbar-width: thin; /* Устанавливаем тонкую полосу прокрутки */
+  scrollbar-color: #475467 transparent;
+}
+
+.button_close {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.button_close:hover {
+  transform: scale(1.1);
+}
+
+.name_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.secondary_info {
+  cursor: pointer;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.secondary_info span,
+.nav_item {
+  text-decoration-line: underline;
+}
+
+.secondary_info span,
+.nav_item {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+.secondary_info span:after,
+.nav_item:after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background-color: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.secondary_info span:hover:after,
+.nav_item:hover:after {
+  content: '';
+  width: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  background-color: var(--accent-color);
+  transition: width 0.5s;
+}
+
+.gallery_advert {
+  margin: 24px 0;
+  height: 310px;
+  display: flex;
+  gap: 16px;
+}
+
+.photo_advert {
+  object-fit: cover;
+}
+
+.description{
+  margin-bottom: 44px;
+  color: #475467;
+}
+
+.nav_list {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 14px;
+}
+
+.close_icon{
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}

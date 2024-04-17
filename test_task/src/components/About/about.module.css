@@ -6,8 +6,6 @@
 }
 
 .about_img{
-  /* max-height: auto;
-  height: auto; */
   display: flex;
   justify-content: center;
   margin: 40px auto ;

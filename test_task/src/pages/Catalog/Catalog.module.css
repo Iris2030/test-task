@@ -1,3 +1,11 @@
+.catalog_wrapper{
+  display: flex;
+  gap: 64px;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 .Title {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -7,9 +15,9 @@
 .Error {
   margin: 20px 0;
   padding: 10px;
-  background-color: #ffbaba;
-  color: #d8000c;
-  border-radius: 5px;
-  border: 1px solid #d8000c;
+  background-color: #fdabab;
+  border: 1px solid #e9020e;
+  color: #e9020e;
+  border-radius: 7px;
   text-align: center;
 }

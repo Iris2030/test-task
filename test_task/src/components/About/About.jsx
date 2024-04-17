@@ -15,7 +15,7 @@ const About = () => {
       <br/>
       <p>So why wait? Embark on the road trip of a lifetime with Freeway Camper today. Let's turn your travel dreams into unforgettable memories!</p>
 
-      <img alt="Different categories of campers on Sales: Vans, campervans, motorhomes and RVs" className={style.about_img} src="https://freeway-camper.com/assets/media/images/blog/_960xAUTO_fit_center-center_82_plane/5337112/EN-2_campersales-categorywithprice.webp"/>
+      <img alt="Different categories of campers on Sales: Vans, campervans, motorhomes and RVs" className={style.about_img} src="https://i.ibb.co/PrwSFfv/side-view-woman-sitting-trunk-car-while-road-trip-using-smartphone.jpg"/>
 
       <h2 >You have more questions?</h2>
 
