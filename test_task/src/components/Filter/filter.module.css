@@ -60,7 +60,8 @@
 .location_icon_disabled{
   position: absolute;
   left: 20px;
-  top: 18px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 18px;
   height: 20px;
   stroke: rgba(16, 24, 40, 0.6);
