@@ -1,5 +1,8 @@
+// ---------------- React and redux tools imports---------------
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
+// ----------------Styles import-----------------------------------
 import style from "./navList.module.css";
 
 const NavList = () => {

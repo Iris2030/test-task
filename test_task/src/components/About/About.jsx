@@ -1,4 +1,7 @@
+// · import react tools
 import React from 'react';
+
+// · import styles
 import style from './about.module.css';
 
 const About = () => {

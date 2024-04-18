@@ -1,16 +1,15 @@
+// ---------------- React and redux tools imports---------------
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import style from './HomePage.module.css';
+
+// ----------------Components imports-----------------------------------
 import Hero from '../../components/Hero/Hero';
 import About from 'components/About/About';
 import Footer from 'components/Footer/Footer';
 
-const HomePage = () => {
-  const navigate = useNavigate();
+// ----------------Styles import-----------------------------------
+import style from './HomePage.module.css';
 
-  const toCatalog = () => {
-    navigate('/catalog');
-  };
+const HomePage = () => {
 
   return (
     <>

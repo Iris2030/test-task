@@ -1,7 +1,12 @@
+// ---------------- React and redux tools imports---------------
 import React, { useState } from 'react';
-import style from "./hero.module.css";
-import NavList from 'components/NavList/NavList';
 import { useDispatch, useSelector } from 'react-redux';
+
+// ----------------Components imports-----------------------------------
+import NavList from 'components/NavList/NavList';
+
+// ----------------Styles import-----------------------------------
+import style from "./hero.module.css";
 
 const Hero = () => {
 

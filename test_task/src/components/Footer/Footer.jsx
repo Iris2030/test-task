@@ -1,4 +1,7 @@
+// ---------------- React and redux tools imports---------------
 import React from 'react';
+
+// ----------------Styles import-----------------------------------
 import style from './footer.module.css';
 
 const Footer = () => {

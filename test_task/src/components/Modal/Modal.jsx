@@ -1,6 +1,12 @@
+// ---------------- React and redux tools imports---------------
 import React, { useEffect } from 'react';
-import styles from './Modal.module.css';
+
+// ----------------Icons import-----------------------------------
 import close_icon from "../../assets/icons/close.svg";
+
+// ----------------Styles import-----------------------------------
+import styles from './Modal.module.css';
+
 
 export const Modal = ({ camper, closeModal }) => {
   useEffect(() => {

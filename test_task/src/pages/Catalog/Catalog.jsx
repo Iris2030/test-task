@@ -1,9 +1,14 @@
+// ---------------- React and redux tools imports---------------
 import React, { useEffect, useState } from 'react';
-import Loader from '../../components/Loader/Loader';
-import style from './catalog.module.css';
-import { CardInfo } from 'components/CardInfo/CardInfo';
+
+// ----------------Components imports-----------------------------------
 import NavList from 'components/NavList/NavList';
 import { Filter } from 'components/Filter/Filter';
+import { CardInfo } from 'components/CardInfo/CardInfo';
+import Loader from '../../components/Loader/Loader';
+
+// ----------------Styles import-----------------------------------
+import style from './catalog.module.css';
 
 const Catalog = () => {
   const [loading, setLoading] = useState(false);

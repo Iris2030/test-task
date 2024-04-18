@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import advertReducer from './slices';
+import favoriteReducer from './reducers/favoriteReducer';
 
 const store = configureStore({
   reducer: {
-    advert: advertReducer,
+    favorite: favoriteReducer,
   },
 });
 

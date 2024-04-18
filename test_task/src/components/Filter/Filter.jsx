@@ -1,5 +1,7 @@
+// ---------------- React and redux tools imports---------------
 import React, { useState } from 'react';
-import styles from './filter.module.css';
+
+// ----------------Icons import-----------------------------------
 import van_icon from '../../assets/icons/van.svg';
 import fully_integrated_icon from '../../assets/icons/fully_integrated.svg';
 import alcove_icon from '../../assets/icons/alcove.svg';
@@ -11,10 +13,14 @@ import wind_icon from '../../assets/icons/wind.svg';
 import location_icon from '../../assets/icons/location.svg';
 import location_disabled_icon from '../../assets/icons/location_disabled.svg';
 
+// ----------------Styles import-----------------------------------
+import styles from './filter.module.css';
+
+
 export const Filter = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  
+
   const handleBlur = () => {
     setIsInputFocused(false);
   };
@@ -66,8 +72,7 @@ export const Filter = () => {
         <p className={styles.filters_title}>Filters</p>
         <div className={styles.filters_wrapper}>
           <div className={styles.equipment_wrapper}>
-            <h2>Vehicle equipment</h2>
-            <hr />
+            <h2 className={styles.title}>Vehicle equipment</h2>
             <ul className={styles.equipment_list}>
               {equipment.map(({ id, name, icon }) => (
                 <li key={id} className={styles.equipment_list_item}>
@@ -82,8 +87,7 @@ export const Filter = () => {
             </ul>
           </div>
           <div className={styles.types_wrapper}>
-            <h2>Vehicle type</h2>
-            <hr />
+            <h2 className={styles.title}>Vehicle type</h2>
             <ul className={styles.types_list}>
               {camperTypes.map(({ id, name, icon }) => (
                 <li key={id} className={styles.types_list_item}>
@@ -92,7 +96,7 @@ export const Filter = () => {
                     src={icon}
                     alt="van icon"
                   />
-                  <p>{name}</p>
+                  <p  className={styles.types_name}>{name}</p>
                 </li>
               ))}
             </ul>
