@@ -52,10 +52,10 @@ export const CardInfo = () => {
     fetchAllCampers();
   }, []);
 
-  const notifyAdd = () =>
-    toast.info('Camper successfully added to your favorites!');
-
-  const notifyRemove = () => toast.info('Camper removed from your favorites!');
+  const notify = (message) =>
+    toast.info(message, {
+      theme: "colored"
+    });
 
   const handleLikeClick = camper => {
     const camperId = camper._id;
@@ -72,10 +72,10 @@ export const CardInfo = () => {
     localStorage.setItem('favoriteCards', JSON.stringify(updatedFavorites));
 
     if (!isFavorite) {
-      notifyAdd();
+      notify('Camper successfully added to your favorites!');
       dispatch(addFavoriteCard(camper));
     } else {
-      notifyRemove();
+      notify('Camper removed from your favorites!');
       dispatch(removeFavoriteCard(camperId));
     }
   };

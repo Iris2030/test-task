@@ -59,8 +59,7 @@ const Favorites = ({ loading, error, favoriteCards }) => {
     dispatch(removeFavoriteCard(camperId));
 
     notifyRemove();
-    const storedFavorites =
-      JSON.parse(localStorage.getItem('favoriteCards')) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem('favoriteCards')) || [];
 
     const updatedFavorites = storedFavorites.filter(
       favorite => favorite._id !== camperId
