@@ -92,6 +92,7 @@
 .description{
   margin-bottom: 44px;
   color: #475467;
+  line-height: 1.5;
 }
 
 .nav_list {
@@ -137,11 +138,6 @@
   flex-shrink: 0;
 }
 
-.left_container{
-  width: 430px;
-  margin-right: 24px;
-}
-
 .vehicle_detail_wrapper{
   padding-top: 24px;
   border-top: 1px solid rgba(10, 24, 40, 0.2);
@@ -175,6 +171,10 @@
   border-bottom: 1px solid #000;
 }
 
+.left_container{
+  width: 430px;
+}
+
 .right_container{
   padding: 24px;
   border: 1px solid rgba(10, 24, 40, 0.2);
@@ -183,17 +183,20 @@
 
 .tab{
   display: flex;
+  gap: 24px;
 }
 
 .form_title{
   font-size: 20px;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .form_subtitle{
   margin-top: 8px;
   font-size: 16px;
   color: #475467;
+  line-height: 1.5;
 }
 
 .form{
@@ -245,24 +248,23 @@ text-indent: 18px;
 }
 
 .form_date_input {
-  width: auto; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
-  padding: 0 40px 0 18px; /* Adjust padding to accommodate the icon */
+  width: auto;  
+  height: 40px; 
+  padding: 0 40px 0 18px;  
   border-radius: 10px;
-  border: 1px solid #ccc; /* Add border styles */
-  background-color: #F7F7F7; /* Add background color */
-  font-size: 16px; /* Adjust the font size as needed */
-  color: #475467; /* Adjust the text color as needed */
+  border: 1px solid #ccc;  
+  background-color: #F7F7F7; 
+  font-size: 16px; 
+  color: #475467; 
 }
 
-/* Adjust styles for the icon */
 .calendar_icon {
   position: absolute;
   top: 50%;
-  left: 12px; /* Adjust the left position to align the icon */
+  left: 12px; 
   transform: translateY(-50%);
-  width: 24px; /* Adjust the width of the icon */
-  height: 24px; /* Adjust the height of the icon */
+  width: 24px;  
+  height: 24px; 
 }
 
 .form_date_input:focus + .input_label,
@@ -329,4 +331,51 @@ text-indent: 18px;
   border-radius: 10px;
   border: none;
   text-indent: 18px;
+}
+
+.initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  width: 60px;
+  height: 60px;
+  margin-right: 12px;
+  color: #E44848;
+  background-color: #F2F4F7;
+  border-radius: 50%;
+}
+
+.rating{
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.star_icon{
+  width: 16px;
+  height: 16px;
+  stroke: transparent;
+}
+
+.reviewer_name{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  align-self: left;
+}
+
+.rating_name_wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.rating_container:last-child{
+  margin-top: 24px;
+}
+
+.reviewer_comment{
+  color: #475467;
+  line-height: 1.5;
 }

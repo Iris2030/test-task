@@ -22,6 +22,7 @@ import freezer_icon from '../../assets/icons/freezer.svg';
 import conditioner_icon from '../../assets/icons/conditioner.svg';
 import cd_icon from '../../assets/icons/cd.svg';
 import star_icon from '../../assets/icons/star.svg';
+import empty_star_icon from '../../assets/icons/empty_star.svg';
 import location_icon from '../../assets/icons/location.svg';
 import calendar_icon from '../../assets/icons/calendar.svg';
 
@@ -45,28 +46,27 @@ export const Modal = ({ camper, closeModal }) => {
 
   const handleNameChange = event => {
     setName(event.target.value);
-    setIsNameValid(true); 
+    setIsNameValid(true);
   };
 
   const handleEmailChange = event => {
     setEmail(event.target.value);
-    setIsEmailValid(true);  
+    setIsEmailValid(true);
   };
 
   const handleBookingDateChange = event => {
     setBookingDate(event.target.value);
-    setIsBookingDateValid(true);  
+    setIsBookingDateValid(true);
   };
 
   const handleCommentChange = event => {
     setComment(event.target.value);
-    setIsCommentValid(true);  
+    setIsCommentValid(true);
   };
 
-  const formNotification = (message) => toast.error(message , {
+  const formNotification = (message) => toast.error(message, {
     theme: "colored"
   })
-
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -130,34 +130,65 @@ export const Modal = ({ camper, closeModal }) => {
     if (textInputRef.current) {
       const handleDateChange = event => {
         const selectedDate = new Date(event.target.value);
-        
+
         if (!isNaN(selectedDate.getTime())) {
           const day = ('0' + selectedDate.getDate()).slice(-2);
           const month = ('0' + (selectedDate.getMonth() + 1)).slice(-2); // Add leading zero for single-digit months
           const year = selectedDate.getFullYear();
-      
+
           const formattedDate = `${day}.${month}.${year}`;
-  
+
           textInputRef.current.value = formattedDate;
         } else {
           notification();
         }
-      
+
         event.target.value = '';
       };
-  
+
       if (dateInputRef.current) {
         dateInputRef.current.addEventListener('change', handleDateChange);
       }
-  
+
       return () => {
         if (dateInputRef.current) {
           dateInputRef.current.removeEventListener('change', handleDateChange);
         }
       };
     }
-  }, [textInputRef]); 
+  }, [textInputRef]);
 
+  const renderStarRating = (rating) => {
+    const coloredStars = rating;
+    const emptyStars = 5 - rating;
+    const stars = [];
+  
+    for (let i = 0; i < coloredStars; i += 1) {
+      stars.push(
+        <img
+          key={`colored_star_${i}`}
+          className={styles.star_icon}
+          src={star_icon}
+          alt="star icon"
+        />
+      );
+    }
+  
+    for (let i = 0; i < emptyStars; i += 1) {
+      stars.push(
+        <img
+          key={`empty_star_${i}`}
+          className={styles.star_icon}
+          src={empty_star_icon}
+          alt="empty star icon"
+        />
+      );
+    }
+  
+    return stars;
+  };
+
+console.log(camper);
   return (
     <div className={styles.backdrop} onClick={closeModal}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
@@ -453,14 +484,14 @@ export const Modal = ({ camper, closeModal }) => {
                     onChange={handleBookingDateChange}
                   />
                 </span>
-                  <input
-                    className={`${styles.text_input} ${!isCommentValid && styles.invalid}`}
-                    id="text_input"
-                    ref={textInputRef}
-                    type="text"
-                    placeholder="Booking date"
-                    disabled
-                  />
+                <input
+                  className={`${styles.text_input} ${!isCommentValid && styles.invalid}`}
+                  id="text_input"
+                  ref={textInputRef}
+                  type="text"
+                  placeholder="Booking date"
+                  disabled
+                />
                 <textarea
                   className={`${styles.form_textarea} ${!isCommentValid && styles.invalid}`}
                   placeholder="Comment"
@@ -474,7 +505,81 @@ export const Modal = ({ camper, closeModal }) => {
             </div>
           </div>
         )}
-        {activeTab === 'Reviews' && <div className={styles.tab}></div>}
+        {activeTab === 'Reviews' && (
+          <div className={styles.tab}>
+            <div className={styles.left_container}>
+              <div>
+              {camper.reviews.map((review, index) => (
+                <div key={review.reviewer_name} className={styles.rating_container}>
+                  <div className={styles.rating}>
+                    <span className={styles.initials}>{review.reviewer_name.slice(0,1)}</span>       
+                    <div className={styles.rating_name_wrapper}>
+                      <p  className={styles.reviewer_name}>{review.reviewer_name}</p>
+                      <div >
+                        <div>{renderStarRating(review.reviewer_rating)}</div>
+                      </div>                   
+                    </div>
+                  </div>
+                  <p className={styles.reviewer_comment}>{review.comment}</p>
+                </div>
+                ))}
+              </div>
+            </div>
+            <div className={styles.right_container}>
+              <h3 className={styles.form_title}> Book your campervan now</h3>
+              <p className={styles.form_subtitle}>Stay connected! We are always ready to help you.</p>
+
+              <form className={styles.form} onSubmit={handleSubmit}>
+
+                <input
+                  className={`${styles.form_input} ${!isNameValid && styles.invalid}`}
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={handleNameChange}
+                />
+
+                <input
+                  className={`${styles.form_input} ${!isEmailValid && styles.invalid}`}
+                  type="text"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+
+                <span className={styles.datepicker_toggle}>
+                  <span className={styles.datepicker_toggle_button}></span>
+                  <img className={styles.datepicker_toggle_button} src={calendar_icon} alt="calendar icon" />
+                  <input
+                    className={`${styles.datepicker_input} ${!isBookingDateValid && styles.invalid}`}
+                    ref={dateInputRef}
+                    id="datepicker_input"
+                    type="date"
+                    value={bookingDate}
+                    onChange={handleBookingDateChange}
+                  />
+                </span>
+                <input
+                  className={`${styles.text_input} ${!isCommentValid && styles.invalid}`}
+                  id="text_input"
+                  ref={textInputRef}
+                  type="text"
+                  placeholder="Booking date"
+                  disabled
+                />
+                <textarea
+                  className={`${styles.form_textarea} ${!isCommentValid && styles.invalid}`}
+                  placeholder="Comment"
+                  value={comment}
+                  onChange={handleCommentChange}
+                />
+                <button className={styles.show_btn} type='submit' >
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
       <ToastContainer autoClose={3000} />
     </div>
