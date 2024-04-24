@@ -101,7 +101,7 @@
 }
 
 .checked{
-  outline: 2px solid blue;
+  outline: 2px solid #e44848;
 }
 
 .equipment_list_item:hover {
