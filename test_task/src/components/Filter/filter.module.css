@@ -163,8 +163,8 @@
 
 .equipment_input{
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 105px;
+  height: 90px;
   margin: -1px;
   border: 0;
   padding: 0;
@@ -173,4 +173,18 @@
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.equipment_list_item:focus-within {
+  box-shadow: none;
+}
+
+.equipment_list_item label,
+.equipment_list_item img {
+  display: block;
+  margin: 0 auto; 
+}
+
+.equipment_list_item img{
+  margin-bottom: 8px;
 }

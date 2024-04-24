@@ -144,3 +144,13 @@
 .rating_wrapper{
   border-bottom: 1px solid #000;
 }
+
+.no_camp_title_wrapper{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 888px;
+}

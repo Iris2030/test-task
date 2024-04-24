@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addFavoriteCard,setFilteredCampers, removeFavoriteCard, startLoading, finishLoading, setCampers } from '../../redux/actions/actions';
+import { addFavoriteCard, setFilteredCampers, removeFavoriteCard, startLoading, finishLoading, setCampers } from '../../redux/actions/actions';
 
 // ----------------Components imports-----------------------------------
 import { Modal } from '../Modal/Modal';
@@ -39,18 +39,18 @@ export const CardInfo = () => {
   useEffect(() => {
     const fetchCampersData = async () => {
       try {
-        dispatch(startLoading());  
-        const campers = await fetchCampers();  
-        dispatch(setFilteredCampers(campers));  
+        dispatch(startLoading());
+        const campers = await fetchCampers();
+        dispatch(setFilteredCampers(campers));
       } catch (error) {
         throw new Error()
       } finally {
-        dispatch(finishLoading()); 
+        dispatch(finishLoading());
       }
     };
 
     fetchCampersData();
-  }, [dispatch]); 
+  }, [dispatch]);
 
   const notify = (message) =>
     toast.info(message, {
@@ -100,7 +100,7 @@ export const CardInfo = () => {
 
   return (
     <div className={styles.card_wrapper}>
-      {filteredCampers &&
+      {filteredCampers && filteredCampers.length > 0 ? (
         filteredCampers.slice(0, visibleCards).map(camper => (
           <ul key={camper._id} className={styles.card_list_wrapper}>
             <li className={styles.card_info}>
@@ -228,17 +228,23 @@ export const CardInfo = () => {
               )}
             </li>
           </ul>
-        ))}
+        ))
+      ) : (
+        <div className={styles.no_camp_title_wrapper}>
+        <h2 >Sorry, no campers were found</h2>
+        </div>
+      )}
       <button
         className={styles.load_more_btn}
         onClick={handleLoadMore}
         style={{
           display:
-            visibleCards < (campers && campers.length) ? 'block' : 'none',
+            filteredCampers && visibleCards < filteredCampers.length ? 'block' : 'none',
         }}
       >
         Load more
       </button>
+
       <ToastContainer autoClose={3000} />
     </div>
   );
