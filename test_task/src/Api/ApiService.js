@@ -8,7 +8,6 @@ const  BASIC_URL = "https://661bd9be65444945d050691c.mockapi.io/campers";
          `${BASIC_URL}/campers`
      );
      const campers = await response.data
-
      return await campers;
 }
 

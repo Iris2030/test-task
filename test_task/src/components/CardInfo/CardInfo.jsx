@@ -1,12 +1,9 @@
 // ---------------- React and redux tools imports---------------
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addFavoriteCard,
-  removeFavoriteCard,
-} from '../../redux/actions/favoriteActions';
+import { addFavoriteCard,setFilteredCampers, removeFavoriteCard, startLoading, finishLoading, setCampers } from '../../redux/actions/actions';
 
 // ----------------Components imports-----------------------------------
 import { Modal } from '../Modal/Modal';
@@ -29,28 +26,31 @@ import styles from './cardInfo.module.css';
 export const CardInfo = () => {
   const dispatch = useDispatch();
   const favorites = useSelector(state => state.favorite.favoriteCards);
+  const loading = useSelector(state => state.favorite.loading);
+  const campers = useSelector(state => state.favorite.campers);
+  const filteredCampers = useSelector(state => state.favorite.filteredCampers);
 
-  const [loading, setLoading] = useState(false);
+
+
   const [error, setError] = useState(null);
-  const [campers, setCampers] = useState(null);
   const [modalStates, setModalStates] = useState({});
   const [visibleCards, setVisibleCards] = useState(4);
 
   useEffect(() => {
-    const fetchAllCampers = async () => {
+    const fetchCampersData = async () => {
       try {
-        setLoading(true);
-        const response = await fetchCampers();
-        setCampers(response);
-        setLoading(false);
+        dispatch(startLoading());  
+        const campers = await fetchCampers();  
+        dispatch(setFilteredCampers(campers));  
       } catch (error) {
-        setError(error);
-        setLoading(false);
+        throw new Error()
+      } finally {
+        dispatch(finishLoading()); 
       }
     };
 
-    fetchAllCampers();
-  }, []);
+    fetchCampersData();
+  }, [dispatch]); 
 
   const notify = (message) =>
     toast.info(message, {
@@ -100,8 +100,8 @@ export const CardInfo = () => {
 
   return (
     <div className={styles.card_wrapper}>
-      {campers &&
-        campers.slice(0, visibleCards).map(camper => (
+      {filteredCampers &&
+        filteredCampers.slice(0, visibleCards).map(camper => (
           <ul key={camper._id} className={styles.card_list_wrapper}>
             <li className={styles.card_info}>
               <div className={styles.card_img_wrapper}>

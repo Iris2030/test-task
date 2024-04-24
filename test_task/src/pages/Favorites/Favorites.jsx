@@ -5,8 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
 // ----------------Components imports-----------------------------------
-import { removeFavoriteCard } from '../../redux/actions/favoriteActions';
-import { setFavoriteCards } from '../../redux/actions/favoriteActions';
+import { setFavoriteCards ,removeFavoriteCard } from '../../redux/actions/actions';
 import NavList from 'components/NavList/NavList';
 import Loader from '../../components/Loader/Loader';
 import { Modal } from '../../components/Modal/Modal';
