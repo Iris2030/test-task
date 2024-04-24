@@ -1,11 +1,15 @@
+// ---------------- React and redux tools imports---------------
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavoriteCard, setFilteredCampers, startLoading, finishLoading, setCampers } from '../../redux/actions/actions';
-import fetchCampers from '../../Api/ApiService';
 
+// ----------------Components imports-----------------------------------
+import fetchCampers from '../../Api/ApiService';
+import { addFavoriteCard, setFilteredCampers, startLoading, finishLoading, setCampers } from '../../redux/actions/actions';
+
+// ----------------Styles import-----------------------------------
 import styles from './filter.module.css';
 
-// Import icons
+// ----------------Icons import-----------------------------------
 import van_icon from '../../assets/icons/van.svg';
 import fully_integrated_icon from '../../assets/icons/fully_integrated.svg';
 import alcove_icon from '../../assets/icons/alcove.svg';
@@ -108,9 +112,7 @@ export const Filter = () => {
     }
 
     if (selectedType) {
-      console.log(selectedType.data,'selectedType');
       filteredResult = filteredResult.filter(camper => {
-        console.log(camper.form === selectedType.data);
         return camper.form === selectedType.data;  
       });
     }
