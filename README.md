@@ -16,7 +16,7 @@ Follow these steps to get the project up and running on your local machine:
 
 1.Clone the Repository:
 
-git clone https://github.com/Iris2030/test_task.git
+git clone https://github.com/Iris2030/test-task.git
 
 2.Install Dependencies:
 
