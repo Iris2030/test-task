@@ -1,10 +1,12 @@
-import {REMOVE_FAVORITE_CARD,ADD_FAVORITE_CARD,SET_FAVORITE_CARDS, START_LOADING, FINISH_LOADING, SET_CAMPERS, SET_FILTERED_CAMPERS } from '../actions/actionTypes';
+import {SET_FORMATTED_BOOKING_DATE, SET_BOOKING_DATE, RESET_BOOKING_DATE, REMOVE_FAVORITE_CARD, ADD_FAVORITE_CARD, SET_FAVORITE_CARDS, START_LOADING, FINISH_LOADING, SET_CAMPERS, SET_FILTERED_CAMPERS } from '../actions/actionTypes';
 
 const initialState = {
   favoriteCards: [],
   campers: [],
   filteredCampers: [],
   loading: false,
+  bookingDate: '',
+  formattedBookingDate: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +49,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         filteredCampers: action.payload,
       };
+    case SET_BOOKING_DATE:
+      return {
+        ...state,
+        bookingDate: action.payload,
+      };
+    case RESET_BOOKING_DATE:
+      return {
+        ...state,
+        bookingDate: null,
+      };
+      case SET_FORMATTED_BOOKING_DATE:
+        return {
+          ...state,
+          bookingDate: action.payload,
+        };
     default:
       return state;
   }

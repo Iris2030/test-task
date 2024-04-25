@@ -1,6 +1,10 @@
 // ---------------- React and redux tools imports---------------
 import React, { useState, useEffect, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+
+// ----------------Components imports-----------------------------------
+import { setBookingDate ,resetBookingDate ,setFormattedBookingDate} from '../../redux/actions/actions';
 
 // ----------------Icons import-----------------------------------
 import close_icon from '../../assets/icons/close.svg';
@@ -31,19 +35,72 @@ import calendar_icon from '../../assets/icons/calendar.svg';
 import styles from './Modal.module.css';
 
 export const Modal = ({ camper, closeModal }) => {
+  const dispatch = useDispatch();
+  const bookingDate = useSelector((state) => state.favorite.bookingDate);
+  const formattedBookingDate = useSelector((state) => state.favorite.formattedBookingDate);
+  
   const [activeTab, setActiveTab] = useState('Features');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [bookingDate, setBookingDate] = useState('');
+
   const [comment, setComment] = useState('');
   const [isNameValid, setIsNameValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isBookingDateValid, setIsBookingDateValid] = useState(true);
   const [isCommentValid, setIsCommentValid] = useState(true);
+  const [isDateChanged, setIsDateChanged] = useState(false);
 
   const textInputRef = useRef(null);
   const dateInputRef = useRef(null);
 
+  const notification = () => toast.danger('Invalid date input!');
+
+  // useEffect(() => {
+  //     const handleDateChange = event => {
+  //       const selectedDate = new Date(event.target.value);
+
+  //       if (!isNaN(selectedDate.getTime())) {
+  //         const day = ('0' + selectedDate.getDate()).slice(-2);
+  //         const month = ('0' + (selectedDate.getMonth() + 1)).slice(-2);
+  //         const year = selectedDate.getFullYear();
+
+  //         const formattedDate = `${day}.${month}.${year}`;
+
+  //         // dispatch(setFormattedBookingDate(formattedDate)); 
+  //         textInputRef.current.value = formattedDate;  
+  //       } else {
+  //         notification();
+  //       }
+
+  //       event.target.value = '';
+  //     };
+
+  //     if (dateInputRef.current) {
+  //       dateInputRef.current.addEventListener('change', handleDateChange);
+  //     }
+
+  //     return () => {
+  //       if (dateInputRef.current) {
+  //         dateInputRef.current.removeEventListener('change', handleDateChange);
+  //       }
+  //     };
+  // }, [isDateChanged]);
+
+  useEffect(() => {
+    const handleEscKeyPress = (event) => {
+
+      if (event.keyCode === 27) {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscKeyPress);
+    };
+  }, [closeModal]);
+  
   const handleNameChange = event => {
     setName(event.target.value);
     setIsNameValid(true);
@@ -55,7 +112,7 @@ export const Modal = ({ camper, closeModal }) => {
   };
 
   const handleBookingDateChange = event => {
-    setBookingDate(event.target.value);
+    dispatch(setBookingDate(event.target.value));
     setIsBookingDateValid(true);
   };
 
@@ -107,62 +164,11 @@ export const Modal = ({ camper, closeModal }) => {
     setActiveTab(tab);
   };
 
-  useEffect(() => {
-    const onKeyDown = event => {
-      if (event.code === 'Escape') {
-        console.log('here');
-        closeModal();
-      }
-    };
-
-    document.addEventListener('keydown', onKeyDown);
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = 'auto';
-    };
-  }, [closeModal]);
-
-  const notification = () => toast.danger('Invalid date input!');
-
-  useEffect(() => {
-    if (textInputRef.current) {
-      const handleDateChange = event => {
-        const selectedDate = new Date(event.target.value);
-
-        if (!isNaN(selectedDate.getTime())) {
-          const day = ('0' + selectedDate.getDate()).slice(-2);
-          const month = ('0' + (selectedDate.getMonth() + 1)).slice(-2); // Add leading zero for single-digit months
-          const year = selectedDate.getFullYear();
-
-          const formattedDate = `${day}.${month}.${year}`;
-
-          textInputRef.current.value = formattedDate;
-        } else {
-          notification();
-        }
-
-        event.target.value = '';
-      };
-
-      if (dateInputRef.current) {
-        dateInputRef.current.addEventListener('change', handleDateChange);
-      }
-
-      return () => {
-        if (dateInputRef.current) {
-          dateInputRef.current.removeEventListener('change', handleDateChange);
-        }
-      };
-    }
-  }, [textInputRef]);
-
   const renderStarRating = (rating) => {
     const coloredStars = rating;
     const emptyStars = 5 - rating;
     const stars = [];
-  
+
     for (let i = 0; i < coloredStars; i += 1) {
       stars.push(
         <img
@@ -173,7 +179,7 @@ export const Modal = ({ camper, closeModal }) => {
         />
       );
     }
-  
+
     for (let i = 0; i < emptyStars; i += 1) {
       stars.push(
         <img
@@ -184,11 +190,10 @@ export const Modal = ({ camper, closeModal }) => {
         />
       );
     }
-  
+
     return stars;
   };
 
-console.log(camper);
   return (
     <div className={styles.backdrop} onClick={closeModal}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
@@ -490,7 +495,8 @@ console.log(camper);
                   ref={textInputRef}
                   type="text"
                   placeholder="Booking date"
-                  disabled
+                  readOnly
+                  value={bookingDate}
                 />
                 <textarea
                   className={`${styles.form_textarea} ${!isCommentValid && styles.invalid}`}
@@ -509,19 +515,19 @@ console.log(camper);
           <div className={styles.tab}>
             <div className={styles.left_container}>
               <div>
-              {camper.reviews.map((review, index) => (
-                <div key={review.reviewer_name} className={styles.rating_container}>
-                  <div className={styles.rating}>
-                    <span className={styles.initials}>{review.reviewer_name.slice(0,1)}</span>       
-                    <div className={styles.rating_name_wrapper}>
-                      <p  className={styles.reviewer_name}>{review.reviewer_name}</p>
-                      <div >
-                        <div>{renderStarRating(review.reviewer_rating)}</div>
-                      </div>                   
+                {camper.reviews.map((review, index) => (
+                  <div key={review.reviewer_name} className={styles.rating_container}>
+                    <div className={styles.rating}>
+                      <span className={styles.initials}>{review.reviewer_name.slice(0, 1)}</span>
+                      <div className={styles.rating_name_wrapper}>
+                        <p className={styles.reviewer_name}>{review.reviewer_name}</p>
+                        <div >
+                          <div>{renderStarRating(review.reviewer_rating)}</div>
+                        </div>
+                      </div>
                     </div>
+                    <p className={styles.reviewer_comment}>{review.comment}</p>
                   </div>
-                  <p className={styles.reviewer_comment}>{review.comment}</p>
-                </div>
                 ))}
               </div>
             </div>
@@ -565,7 +571,8 @@ console.log(camper);
                   ref={textInputRef}
                   type="text"
                   placeholder="Booking date"
-                  disabled
+                  readOnly
+                  value={bookingDate}
                 />
                 <textarea
                   className={`${styles.form_textarea} ${!isCommentValid && styles.invalid}`}

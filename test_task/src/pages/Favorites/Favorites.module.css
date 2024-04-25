@@ -172,3 +172,7 @@
 .rating_wrapper{
   border-bottom: 1px solid #000;
 }
+
+.empty_template_title{
+  font-size: 29px;
+}

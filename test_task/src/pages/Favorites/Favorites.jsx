@@ -72,7 +72,8 @@ const Favorites = ({ loading, error, favoriteCards }) => {
       <NavList />
       {favoriteCards.length === 0 ? (
         <div className={styles.empty_template}>
-          There are currently no favorite campers selected
+          <h2 className={styles.empty_template_title}>There are currently no favorite campers selected</h2> 
+          <ToastContainer autoClose={3000} />
         </div>
       ) : (
         <div className={styles.favorites_container}>

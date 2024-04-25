@@ -1,4 +1,4 @@
-import { SET_FILTERED_CAMPERS,  START_LOADING, FINISH_LOADING, SET_CAMPERS,SET_FAVORITE_CARDS, REMOVE_FAVORITE_CARD, ADD_FAVORITE_CARD } from './actionTypes';
+import { SET_FORMATTED_BOOKING_DATE, SET_BOOKING_DATE, RESET_BOOKING_DATE, SET_FILTERED_CAMPERS,  START_LOADING, FINISH_LOADING, SET_CAMPERS,SET_FAVORITE_CARDS, REMOVE_FAVORITE_CARD, ADD_FAVORITE_CARD } from './actionTypes';
 
 export const addFavoriteCard = (cardId) => ({
   type: ADD_FAVORITE_CARD,
@@ -31,4 +31,18 @@ export const setCampers = (campers) => ({
 export const setFilteredCampers = (filteredCampers) => ({
   type: SET_FILTERED_CAMPERS,
   payload: filteredCampers,
+});
+
+export const setBookingDate = (date) => ({
+  type: SET_BOOKING_DATE,
+  payload: date,
+});
+
+export const setFormattedBookingDate = (formattedDate) => ({
+  type: SET_FORMATTED_BOOKING_DATE,
+  payload: formattedDate,
+});
+
+export const resetBookingDate = () => ({
+  type: RESET_BOOKING_DATE,
 });
